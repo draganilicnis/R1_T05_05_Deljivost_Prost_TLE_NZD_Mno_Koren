@@ -84,6 +84,12 @@ class R1_T05_05_Deljivost_Prost_TLE_NZD_Mno_Kor
         return factors;
     }
 
+    static bool IsPerfectSquare(long num)
+    {
+        long root = (long)Math.Sqrt(num);
+        return root * root == num;
+    }
+
     static long SmallestNumber(long n)
     {
         List<long> factors = Factorize(n);
@@ -99,7 +105,13 @@ class R1_T05_05_Deljivost_Prost_TLE_NZD_Mno_Kor
         }
 
         long result = n * multiplyFactor;
-        return (long)Math.Sqrt(result);
+
+        while (IsPerfectSquare(result))
+        {
+            result = (int)Math.Sqrt(result);
+        }
+
+        return result;
     }
 
     static void Main()
