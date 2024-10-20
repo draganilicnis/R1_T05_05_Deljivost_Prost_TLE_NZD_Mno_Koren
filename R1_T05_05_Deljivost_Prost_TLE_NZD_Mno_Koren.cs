@@ -28,7 +28,7 @@ class R1_T05_05_Deljivost_Prost_TLE_NZD_Mno_Kor
     //    long d = 2;                     // Prvi delilac: 2
     //    while (d * d <= n)              // Uslov za kraj petlje je kada je delilac > Sqrt(n)
     //    {
-    //        int k = 0;                  // Prebrojavanje koliko puta je broj n deljiv sa deliocem d
+    //        long k = 0;                  // Prebrojavanje koliko puta je broj n deljiv sa deliocem d
     //        while (n % d == 0)          // Sve dok je broj n deljiv sa d
     //        {
     //            n = n / d;              // Vrednost broja n smanjujemo, odnosno delimo deliocem d
@@ -69,10 +69,10 @@ class R1_T05_05_Deljivost_Prost_TLE_NZD_Mno_Kor
     //    Obradi();
     //}
 
-    static List<int> Factorize(int n)
+    static List<long> Factorize(long n)
     {
-        List<int> factors = new List<int>();
-        for (int i = 2; i <= Math.Sqrt(n); i++)
+        List<long> factors = new List<long>();
+        for (long i = 2; i <= Math.Sqrt(n); i++)
         {
             while (n % i == 0)
             {
@@ -84,12 +84,12 @@ class R1_T05_05_Deljivost_Prost_TLE_NZD_Mno_Kor
         return factors;
     }
 
-    static int SmallestNumber(int n)
+    static long SmallestNumber(long n)
     {
-        List<int> factors = Factorize(n);
+        List<long> factors = Factorize(n);
         var factorCounts = factors.GroupBy(x => x).ToDictionary(g => g.Key, g => g.Count());
 
-        int multiplyFactor = 1;
+        long multiplyFactor = 1;
         foreach (var kvp in factorCounts)
         {
             if (kvp.Value % 2 != 0)
@@ -98,13 +98,13 @@ class R1_T05_05_Deljivost_Prost_TLE_NZD_Mno_Kor
             }
         }
 
-        int result = n * multiplyFactor;
-        return (int)Math.Sqrt(result);
+        long result = n * multiplyFactor;
+        return (long)Math.Sqrt(result);
     }
 
     static void Main()
     {
-        int n = int.Parse(Console.ReadLine());
+        long n = long.Parse(Console.ReadLine());
         Console.WriteLine(SmallestNumber(n));
     }
 }
